@@ -17,7 +17,7 @@ export default function App() {
     const [registeredStudents, setRegisteredStudents] = useState([]);
     const [token, setToken] = useState(sessionStorage.getItem('token'));
     const [isLoading, setIsLoading] = useState(true);
-    const [notificationPermission, setNotificationPermission] = useState(Notification.permission);
+    const [notificationPermission, setNotificationPermission] = useState('Notification' in window ? window.Notification.permission : 'denied');
     const [lectureNotification, setLectureNotification] = useState(null);
     const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('theme') === 'dark');
 
@@ -51,7 +51,9 @@ export default function App() {
 
     useEffect(() => {
         if (user?.role === 'student' && notificationPermission === 'default') {
-            Notification.requestPermission().then(setNotificationPermission);
+            if ('Notification' in window) {
+                window.Notification.requestPermission().then(setNotificationPermission);
+            }
         }
     }, [user, notificationPermission]);
 
@@ -200,10 +202,13 @@ export default function App() {
         if (lecture) {
             setLectureNotification(lecture);
             if (notificationPermission === 'granted') {
-                new Notification(`Attendance Open: ${lecture.name}`, { body: `Tap to mark presence.` }).onclick = () => {
-                    setActiveLecture(lecture);
-                    setView('scanQRCode');
-                };
+                if ('Notification' in window) {
+                    new window.Notification(`Attendance Open: ${lecture.name}`, { body: `Tap to mark presence.` }).onclick = () => {
+                        setActiveLecture(lecture);
+                        setView('scanQRCode');
+                    };
+                }
+
             }
         }
     };
