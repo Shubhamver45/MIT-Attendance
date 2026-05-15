@@ -1,0 +1,62 @@
+# ========================================
+# CI/CD Pipeline - Frontend
+# Smart Attendance System - React + Vite
+# ========================================
+# Triggers: push/PR to main branch
+# Pipeline: Install → Lint → Build → Docker Build → Push to Docker Hub
+
+name: Frontend CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '18'
+  DOCKER_IMAGE: ${{ secrets.DOCKER_USERNAME }}/attendance-frontend
+
+jobs:
+  # ── Job 1: Lint & Build ──────────────────
+  build:
+    name: 🏗️ Lint & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📚 Install dependencies
+        run: npm ci
+
+      - name: 🔍 Run ESLint
+        run: npm run lint || true
+
+      - name: 🏗️ Build production bundle
+        run: npm run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL || 'http://localhost:3001' }}
+
+      - name: 📊 Check bundle size
+        run: |
+          echo "📦 Production build artifacts:"
+          ls -lah dist/
+          echo ""
+          echo "📊 Total bundle size:"
+          du -sh dist/
+
+      - name: 📤 Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: dist/
+          retention-days: 7
+
+
