@@ -3,7 +3,7 @@ import { Html5QrcodeScanner } from 'html5-qrcode';
 import { CalendarIcon, MapPinIcon, QrCodeIcon, CalendarDaysIcon, ArrowLeftIcon, UserIcon, MailIcon, ActivityIcon, CheckIcon, XIcon, BookOpenIcon, ShieldIcon } from '../components/Icons.jsx';
 import { getCurrentLocation, formatDistance, calculateDistance } from '../utils/geolocation.js';
 
-const API_URL = "https://attendence-backend-tfw2.onrender.com/api";
+const API_URL = import.meta.env.VITE_API_URL || "https://attendence-backend-tfw2.onrender.com/api";
 
 const StatCard = ({ title, value, subtitle, color, icon }) => {
     const colorClasses = { 

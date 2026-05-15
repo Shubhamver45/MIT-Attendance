@@ -11,7 +11,7 @@ import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import { io } from 'socket.io-client';
 
-const API_URL = "https://attendence-backend-tfw2.onrender.com/api";
+const API_URL = import.meta.env.VITE_API_URL || "https://attendence-backend-tfw2.onrender.com/api";
 
 const downloadCSV = (csvContent, fileName) => {
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });

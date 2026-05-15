@@ -6,7 +6,7 @@ import { TeacherDashboard, AttendanceReportsPage, CreateLecturePage } from './pa
 import { StudentDashboard, ScanQRCodePage, ViewSchedulePage, StudentProfilePage } from './pages/StudentPages.jsx';
 import { AdminDashboard } from './pages/AdminPages.jsx';
 
-const API_URL = "https://attendence-backend-tfw2.onrender.com/api";
+const API_URL = import.meta.env.VITE_API_URL || "https://attendence-backend-tfw2.onrender.com/api";
 
 export default function App() {
     const [user, setUser] = useState(null);

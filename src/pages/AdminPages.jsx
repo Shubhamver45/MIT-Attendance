@@ -9,7 +9,7 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, ArcElement, Title, Tooltip, Legend, Filler, RadialLinearScale);
 
-const API_URL = "https://attendence-backend-tfw2.onrender.com/api";
+const API_URL = import.meta.env.VITE_API_URL || "https://attendence-backend-tfw2.onrender.com/api";
 
 const HeaderStats = ({ label, value, icon, loading }) => (
     <div className="dashboard-card group transition-all hover:scale-[1.02]">
