@@ -62,8 +62,13 @@ export const StudentDashboard = ({ user, token, lectures, attendanceRecords, lec
         finally { setIsSubmittingLeave(false); }
     };
 
+    const parseLectureDateTime = (date, time) => {
+        const timeStart = time ? time.split(' - ')[0] : '00:00';
+        return new Date(`${date.replace(/-/g, '/')} ${timeStart}`);
+    };
+
     let currentStreak = 0;
-    const pastLectures = lectures.filter(l => new Date(`${l.date}T${l.time}`) <= new Date()).sort((a, b) => new Date(`${b.date}T${b.time}`) - new Date(`${a.date}T${a.time}`));
+    const pastLectures = lectures.filter(l => parseLectureDateTime(l.date, l.time) <= new Date()).sort((a, b) => parseLectureDateTime(b.date, b.time) - parseLectureDateTime(a.date, a.time));
     for (const lecture of pastLectures) {
         if (myRecords.some(r => r.lecture_id === lecture.id)) currentStreak++;
         else break;

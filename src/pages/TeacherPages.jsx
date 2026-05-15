@@ -349,7 +349,7 @@ export const TeacherDashboard = ({ user, setView, lectures, activeLecture, setAc
                                 <XIcon className="w-6 h-6" />
                             </button>
                         </div>
-                        <div className="p-8 overflow-y-auto flex-1 custom-scrollbar bg-slate-50/50">
+                        <div className="p-8 overflow-y-auto overflow-x-auto flex-1 custom-scrollbar bg-slate-50/50">
                             <table className="mit-table shadow-sm rounded-2xl overflow-hidden bg-white">
                                 <thead>
                                     <tr>
@@ -682,7 +682,7 @@ export const AttendanceReportsPage = ({ teacherId, token, setView }) => {
                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Scanning Databases...</p>
                     </div>
                 ) : defaulters.length > 0 ? (
-                    <div className="overflow-hidden rounded-[24px] border border-slate-100 shadow-sm">
+                    <div className="overflow-hidden overflow-x-auto rounded-[24px] border border-slate-100 shadow-sm">
                         <table className="mit-table">
                             <thead>
                                 <tr>

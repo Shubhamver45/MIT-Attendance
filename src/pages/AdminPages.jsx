@@ -280,7 +280,7 @@ export const AdminDashboard = ({ user, token, initialTab = 'overview' }) => {
                         <button onClick={() => downloadCSV(data.lectures, 'lectures.csv')} className="btn-mit btn-mit-outline py-2 px-4 text-[10px]"><DownloadIcon className="w-4 h-4" /> Export CSV</button>
                     </header>
                     {data.lectures && data.lectures.length > 0 ? (
-                        <div className="dashboard-card !p-0 overflow-hidden">
+                        <div className="dashboard-card !p-0 overflow-hidden overflow-x-auto">
                             <table className="mit-table">
                                 <thead><tr><th>Name</th><th>Subject</th><th>Date</th><th>Status</th></tr></thead>
                                 <tbody>
@@ -306,8 +306,8 @@ export const AdminDashboard = ({ user, token, initialTab = 'overview' }) => {
                         <button onClick={() => downloadCSV(data.attendance, 'attendance.csv')} className="btn-mit btn-mit-outline py-2 px-4 text-[10px]"><DownloadIcon className="w-4 h-4" /> Export CSV</button>
                     </header>
                     {data.attendance && data.attendance.length > 0 ? (
-                        <div className="dashboard-card !p-0 overflow-hidden max-h-[600px] overflow-y-auto custom-scrollbar">
-                            <table className="mit-table">
+                        <div className="dashboard-card !p-0 overflow-hidden max-h-[600px] overflow-y-auto overflow-x-auto custom-scrollbar">
+                            <table className="mit-table min-w-[400px]">
                                 <thead><tr><th>Student</th><th>Lecture</th><th>Time</th></tr></thead>
                                 <tbody>
                                     {data.attendance.map(a => (
@@ -331,8 +331,8 @@ export const AdminDashboard = ({ user, token, initialTab = 'overview' }) => {
                         <button onClick={() => downloadCSV(data.leaves, 'leaves.csv')} className="btn-mit btn-mit-outline py-2 px-4 text-[10px]"><DownloadIcon className="w-4 h-4" /> Export CSV</button>
                     </header>
                     {data.leaves && data.leaves.length > 0 ? (
-                        <div className="dashboard-card !p-0 overflow-hidden">
-                            <table className="mit-table">
+                        <div className="dashboard-card !p-0 overflow-hidden overflow-x-auto">
+                            <table className="mit-table min-w-[500px]">
                                 <thead><tr><th>Student</th><th>Reason</th><th>Dates</th><th>Status</th></tr></thead>
                                 <tbody>
                                     {data.leaves.map(l => (
