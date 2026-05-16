@@ -2,6 +2,18 @@ import React, { StrictMode, Component } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { registerSW } from 'virtual:pwa-register'
+
+const updateSW = registerSW({
+  onNeedRefresh() {
+    // Optionally alert the user here
+    console.log('New content available, refreshing...');
+    updateSW();
+  },
+  onOfflineReady() {
+    console.log('App ready to work offline');
+  },
+})
 
 class ErrorBoundary extends Component {
   constructor(props) {

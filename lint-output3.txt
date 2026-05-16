@@ -1,8 +1,0 @@
-
-C:\Users\shubh\OneDrive\Desktop\mpro\mit-attendance\src\pages\StudentPages.jsx
-  229:11  warning  The 'markPresence' function makes the dependencies of useEffect Hook (at line 277) change on every render. Move it inside the useEffect callback. Alternatively, wrap the definition of 'markPresence' in its own useCallback() Hook  react-hooks/exhaustive-deps
-  276:9   warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
-
-✖ 2 problems (0 errors, 2 warnings)
-  0 errors and 1 warning potentially fixable with the `--fix` option.
-

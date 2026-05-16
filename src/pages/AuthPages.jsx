@@ -9,7 +9,6 @@ import {
     GraduationCapIcon,
     ShieldIcon
 } from '../components/Icons.jsx';
-import { FaceCapture } from '../components/FaceCapture.jsx';
 
 const AuthFormContainer = ({ children, title, subtitle, icon }) => (
     <div className="auth-card animate-floatUp">
@@ -154,17 +153,6 @@ export const StudentRegisterPage = ({ setView, onRegister }) => {
                     </div>
                     <InputField id="email" label="Student Email" type="email" placeholder="Email Address" icon={<MailIcon className="w-5 h-5" />} value={formData.email} onChange={handleChange} />
                     <InputField id="password" label="Create Password" type="password" placeholder="Create a secure password" icon={<LockIcon className="w-5 h-5" />} value={formData.password} onChange={handleChange} />
-                    
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 my-6">
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Face Registration (Required)</p>
-                        <FaceCapture 
-                            onCapture={(embedding) => setFormData(prev => ({ ...prev, face_embedding: embedding }))} 
-                            buttonText="Register Face"
-                        />
-                        {formData.face_embedding && (
-                            <p className="text-[10px] text-green-600 font-black mt-3 text-center uppercase tracking-widest">✓ Face Registered</p>
-                        )}
-                    </div>
 
                     <div className="space-y-4 border-t border-slate-100 pt-6">
                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Academic Contacts</p>
@@ -177,7 +165,7 @@ export const StudentRegisterPage = ({ setView, onRegister }) => {
                     
                     <button 
                         type="submit" 
-                        disabled={isSubmitting || !formData.face_embedding} 
+                        disabled={isSubmitting} 
                         className="btn-mit btn-mit-orange w-full py-4 text-sm font-bold mt-6"
                     >
                         {isSubmitting ? 'Registering Profile...' : 'Create Account'}

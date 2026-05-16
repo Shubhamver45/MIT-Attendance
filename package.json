@@ -8,12 +8,10 @@
     "dev:network": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postinstall": "node download_models.cjs"
+    "preview": "vite preview"
   },
   "dependencies": {
     "chart.js": "^4.5.1",
-    "face-api.js": "^0.22.2",
     "html5-qrcode": "^2.3.8",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.7",
